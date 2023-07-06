@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Display";
+}
+@model Post
+
+<div>
+  <h1><strong>@Model.Title</strong></h1>
+  <div class="d-flex">
+    <div class="mt-3">
+      <img  style="width: 600px;" src="@Model.Image" alt="">
+    </div>
+    <div>
+      <h4 class="mt-5 marLeft">By : @Model.Creator.FirstName</h4>
+      <h4 class="mt-5 marLeft">Medium : @Model.Medium</h4>
+      <h4 class="mt-5 marLeft">For Sale : @Model.ForSale</h4>
+      <div class="mt-4 marLeft">
+        <a  class="mt-5" href="/posts/edit/@Model.PostId">Edit</a>
+        <a  class="mt-5 marLeft" href="/post/delete/@Model.PostId">Delete</a>
+      </div>
+      
+    </div>
+  </div>
+</div>

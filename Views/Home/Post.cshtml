@@ -1,0 +1,9 @@
+@{
+    ViewData["Title"] ="add a post";
+}
+    <h1>Make a Post</h1>
+    <div>
+        <div class="col-6 mt-5">
+            @await Html.PartialAsync("~/Views/Partials/_PostForm.cshtml")
+        </div>
+    </div>

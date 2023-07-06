@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+@model MyViewModel
+
+<div>
+    <div class="contain">
+      @foreach (Post p in Model.AllPosts)
+      {
+        <div class="d-flex">
+          <div class="d-flex align-items-center">
+              <img style="height: 150px;" src="@p.Image">
+            <a class="btn btn-outline link-dark text-decoration-none marLeft high"  asp-controller="Home"  asp-route-id="@p.PostId" asp-action="Display">@p.Title</a>
+            <p class="text-center marLefter mt-3"> Medium: @p.Medium</p>
+            <p class="text-center marLefter mt-3"> Likes : @p.AllLikes.Count </p>
+        
+        @if(@Context.Session.GetInt32("UserId") == p.Creator.UserId){
+          <a href="/post/delete/@p.PostId" class="marLefter text-danger" >Delete</a>
+          <a href="/posts/@p.PostId" class="marLefter">Edit</a>
+        }
+        else if(p.AllLikes.Any(l => l.UserId == @Context.Session.GetInt32("UserId")))
+        {
+          <a href="/post/like/delete/@p.PostId">Unlike</a>
+        }
+        else { 
+          <a href="/post/like/@p.PostId" class="marLefter">Like</a>
+        }
+        </div>
+      </div>
+      }
+    </div>
+</div>
